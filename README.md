@@ -1,0 +1,5 @@
+# generically
+
+`Generically` newtype to use with `DerivingVia`.
+
+This is a compatibility package as `Generically` and `Generically1` newtypes are available since `base-4.17` in `GHC.Generics`.

@@ -4,9 +4,15 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE PolyKinds #-}
 {-# LANGUAGE InstanceSigs #-}
-#if __GLASGOW_HASKELL__ >= 900
+#if __GLASGOW_HASKELL__ >= 810
 {-# LANGUAGE StandaloneKindSignatures #-}
 #endif
+-- | This module exports 'Generically' and 'Generically' newtypes
+-- meant to be used with "GHC.Generics" and @DerivingVia@.
+--
+-- These types are re-exported from "GHC.Generics" on @base-4.17@ and later,
+-- and defined here for older @base@ versions.
+--
 module GHC.Generics.Generically (
     Generically (..),
     Generically1 (..),
@@ -16,7 +22,7 @@ module GHC.Generics.Generically (
 import GHC.Generics
 #else
 
-#if __GLASGOW_HASKELL__ >= 900
+#if __GLASGOW_HASKELL__ >= 810
 import Data.Kind (Type)
 #endif
 
@@ -56,7 +62,7 @@ instance (Generic a, Monoid (Rep a ())) => Monoid (Generically a) where
 -- Generically1
 -------------------------------------------------------------------------------
 
-#if __GLASGOW_HASKELL__ >= 900
+#if __GLASGOW_HASKELL__ >= 810
 type    Generically1 :: forall k. (k -> Type) -> (k -> Type)
 #endif
 

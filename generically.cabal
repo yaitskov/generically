@@ -3,10 +3,10 @@ name:               generically
 version:            0.1.0.0
 synopsis:           Generically newtype to use with DerivingVia
 description:
-  This is a compatibility package as Generically is available
-  since @base-4.17@
+  This is a compatibility package as @Generically@ and @Generically1@ newtypes
+  are available since @base-4.17@ in 'GHC.Generics'.
 
-bug-reports:        https://github.com/fillme
+bug-reports:        https://github.com/haskell-compat/generically/issues
 author:             Oleg Grenrus
 maintainer:         Oleg Grenrus <oleg.grenrus@iki.fi>
 copyright:          2022 Oleg Grenrus
@@ -28,7 +28,7 @@ tested-with:
 
 source-repository head
   type:     git
-  location: https://github.com/fillme
+  location: https://github.com/haskell-compat/generically.git
 
 library
   default-language: Haskell2010

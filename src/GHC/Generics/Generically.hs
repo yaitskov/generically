@@ -20,6 +20,9 @@ module GHC.Generics.Generically (
 
 #if MIN_VERSION_base(4,17,0)
 import GHC.Generics
+#if !MIN_VERSION_base(4,18,0)
+import Data.Orphans () -- To bring Eq/Ord instances for Generically1 into scope
+#endif
 #else
 
 #if __GLASGOW_HASKELL__ >= 810
@@ -40,7 +43,7 @@ import Data.Functor.Classes (Ord1 (..), Eq1 (..))
 -------------------------------------------------------------------------------
 
 -- | A type whose instances are defined generically, using the
--- 'Generic' representation. 
+-- 'Generic' representation.
 newtype Generically a = Generically a
 
 instance (Generic a, Semigroup (Rep a ())) => Semigroup (Generically a) where
@@ -96,6 +99,13 @@ instance (Generic1 f, Alternative (Rep1 f)) => Alternative (Generically1 f) wher
 
   (<|>) :: Generically1 f a -> Generically1 f a -> Generically1 f a
   Generically1 as1 <|> Generically1 as2 = Generically1 (to1 (from1 as1 <|> from1 as2))
+
+instance (Generic1 f, Eq (Rep1 f a)) => Eq (Generically1 f a) where
+   Generically1 x == Generically1 y = from1 x == from1 y
+   Generically1 x /= Generically1 y = from1 x /= from1 y
+
+instance (Generic1 f, Ord (Rep1 f a)) => Ord (Generically1 f a) where
+   Generically1 x `compare` Generically1 y = from1 x `compare` from1 y
 
 instance (Generic1 f, Eq1 (Rep1 f)) => Eq1 (Generically1 f) where
   liftEq :: (a -> b -> Bool) -> (Generically1 f a -> Generically1 f b -> Bool)

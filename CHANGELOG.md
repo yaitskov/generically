@@ -1,4 +1,4 @@
-# next -- ????.??.??
+# 0.1.1 -- 2023-03-10
 
 * Backport `Eq` and `Ord` instances for `Generically1`, which were introduced
   in `base-4.18.0.0`. To ensure that these instances are in scope when building

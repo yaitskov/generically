@@ -1,6 +1,6 @@
 cabal-version:      1.12
 name:               generically
-version:            0.1.1
+version:            0.1.2
 x-revision:         2
 synopsis:           Generically newtype to use with DerivingVia
 description:
